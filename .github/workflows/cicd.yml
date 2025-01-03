@@ -9,14 +9,25 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+      # Step 1: Checkout source code
       - name: Checkout Source
         uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
       - name: Setup Node.js version
         uses: actions/setup-node@v4
         with:
           node-version: '18.x'
+
+      # Step 3: Install dependencies
       - name: Install Dependencies
         run: npm install
+
+      # Step 4: Compile TypeScript
+      - name: Build TypeScript
+        run: npm run build
+
+      # Step 5: Deploy to Azure App Service
       - name: Deploy to Azure App Service
         uses: azure/webapps-deploy@v2
         with:
