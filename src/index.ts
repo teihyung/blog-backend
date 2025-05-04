@@ -1,6 +1,8 @@
 import express, {Express, Request, Response} from "express";
 import dotenv from "dotenv";
 import { createClient } from '@supabase/supabase-js'
+import authRoutes from "./auth/routes/authRoutes";
+import { authenticateToken } from "./middleware/auth";
 
 dotenv.config();
 
@@ -21,16 +23,9 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Hello typescript nodejs server what is going on");
 });
 
-app.get("/users", async (req: Request, res: Response): Promise<void> => {
-  const { data, error } = await supabase.from("users").select("*");
+app.use("/auth", authRoutes);
 
-  if (error) {
-    res.status(500).json({ error: error.message });
-    return;
-  }
-
-  res.status(200).json(data);
-});
+app.use(authenticateToken);
 
 app.listen(port, "0.0.0.0", () => {
   console.log(`Server running at http://localhost:${port}`);
