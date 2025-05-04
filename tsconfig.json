@@ -1,4 +1,4 @@
-{
+  {
   "compilerOptions": {
     "target": "es2016",
     "module": "commonjs",
@@ -7,10 +7,12 @@
     "outDir": "./dist",
     "rootDir": "./",
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "types": ["node"]
   },
-  "include": [
-    "src/index.ts"
-  ],
+  "include":
+    ["src"]
+  ,
   "exclude": ["node_modules"]
 }

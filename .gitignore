@@ -1,0 +1,15 @@
+# Node.js dependencies
+node_modules/
+
+# TypeScript output
+dist/
+
+# Logs
+*.log
+
+# Environment variables
+.env
+
+# OS generated files
+.DS_Store
+Thumbs.db

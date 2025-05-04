@@ -1,6 +1,3 @@
-FROM ubuntu:latest
-LABEL authors="teihyung"
-
 FROM node:18
 
 # Set working directory
