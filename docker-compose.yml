@@ -7,6 +7,6 @@ services:
     ports:
       - "8000:8000"  # host:container
     volumes:
-      - .:/app       # bind local files to container
-      - /app/node_modules  # prevent overwriting node_modules
+      - .:/app
+      - /app/node_modules
     command: npm run dev
