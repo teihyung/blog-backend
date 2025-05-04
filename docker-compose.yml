@@ -1,0 +1,12 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    container_name: express-ts-dev
+    ports:
+      - "8000:8000"  # host:container
+    volumes:
+      - .:/app       # bind local files to container
+      - /app/node_modules  # prevent overwriting node_modules
+    command: npm run dev
