@@ -1,6 +1,5 @@
 import express, {Express, Request, Response} from "express";
 import dotenv from "dotenv";
-import { createClient } from '@supabase/supabase-js'
 import authRoutes from "./auth/routes/authRoutes";
 import { authenticateToken } from "./middleware/auth";
 
@@ -9,10 +8,7 @@ dotenv.config();
 const app: Express = express();
 const port = Number(process.env.PORT) || 8000;
 
-const supabaseUrl = process.env.SUPABASE_URL!;
-const supabaseKey = process.env.SUPABASE_KEY!;
-
-export const supabase = createClient(supabaseUrl, supabaseKey);
+app.use(express.json());
 
 app.use((req, res, next) => {
   console.log(`[${req.method}] ${req.originalUrl}`);
@@ -23,7 +19,7 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Hello typescript nodejs server what is going on");
 });
 
-app.use("/auth", authRoutes);
+app.use("/api/auth", authRoutes);
 
 app.use(authenticateToken);
 
